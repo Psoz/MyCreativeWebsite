@@ -19,6 +19,7 @@ module.exports = {
     path.join(dirApp, 'index.js'),
     path.join(dirStyles, 'index.scss')
   ],
+
   resolve: {
     modules: [
       dirApp,
@@ -27,6 +28,7 @@ module.exports = {
       dirNode
     ]
   },
+
   plugins: [
     new webpack.DefinePlugin({
       IS_DEVELOPMENT
@@ -88,7 +90,7 @@ module.exports = {
         test: /\.(.jpe?g|png|gif|svg|woff2?|fnt|webp)$/,
         loader: 'file-loader',
         options: {
-          name (file) {
+          name(file) {
             return '[hash].[ext]'
           }
         }

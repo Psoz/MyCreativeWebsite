@@ -27,19 +27,26 @@ const initApi = req => {
 }
 
 const handlelinkResolver = doc => {
+  if (doc.type === 'product') {
+    return `/detail/${doc.slug}`
+  }
+
+  if (doc.type === 'collections') {
+    return '/collections'
+  }
+
+  if (doc.type === 'about') {
+    return '/about'
+  }
+
   return '/'
 }
 
 app.use((req, res, next) => {
-  res.locals.ctx = {
-    endpoint: process.env.PRISMIC_ENDPOINT,
-    linkResolver: handlelinkResolver
-  }
-
   res.locals.Link = handlelinkResolver
 
   res.locals.Numbers = index => {
-    return index == 0 ? 'One' : index == 1 ? 'Two' : index == 2 ? 'Three' : index == 3 ? 'Four' : ''
+    return index === 0 ? 'One' : index === 1 ? 'Two' : index === 2 ? 'Three' : index === 3 ? 'Four' : ''
   }
 
   res.locals.PrismicDOM = PrismicDOM
@@ -50,61 +57,63 @@ app.use((req, res, next) => {
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
 
+const handleRequest = async api => {
+  const meta = await api.getSingle('metadate')
+  const preloader = await api.getSingle('preloader')
+  const navigation = await api.getSingle('navigation')
+
+  return {
+    meta,
+    navigation,
+    preloader
+  }
+}
+
 app.get('/', async (req, res) => {
   const api = await initApi(req)
   const home = await api.getSingle('home')
-  const meta = await api.getSingle('meta')
-  const preloader = await api.getSingle('preloader')
+  const defaults = await handleRequest(api)
+
   const { results: collections } = await api.query(Prismic.Predicates.at('document.type', 'collection'), {
     fetchLinks: 'product.image'
   })
 
-  console.log('homea',home.data)
-
   res.render('pages/home', {
-    home,
-    meta,
+    ...defaults,
     collections,
-    preloader
+    home
   })
 })
 
 app.get('/about', async (req, res) => {
   const api = await initApi(req)
   const about = await api.getSingle('about')
-  const meta = await api.getSingle('meta')
-  const preloader = await api.getSingle('preloader')
+  const defaults = await handleRequest(api)
 
   res.render('pages/about', {
-    about,
-    meta,
-    preloader
+    ...defaults,
+    about
   })
 })
 
 app.get('/collections', async (req, res) => {
   const api = await initApi(req)
-  const meta = await api.getSingle('meta')
   const home = await api.getSingle('home')
-  const preloader = await api.getSingle('preloader')
+  const defaults = await handleRequest(api)
   const { results: collections } = await api.query(Prismic.Predicates.at('document.type', 'collection'), {
     fetchLinks: 'product.image'
   })
 
-  console.log('preloader 2', preloader)
-
   res.render('pages/collections', {
+    ...defaults,
     home,
-    meta,
-    collections,
-    preloader
+    collections
   })
 })
 
 app.get('/detail/:uid', async (req, res) => {
   const api = await initApi(req)
-  const meta = await api.getSingle('meta')
-  const preloader = await api.getSingle('preloader')
+  const defaults = await handleRequest(api)
   const product = await api.getByUID('product', req.params.uid, {
     fetchLinks: 'collection.title'
   })
@@ -112,9 +121,8 @@ app.get('/detail/:uid', async (req, res) => {
   console.log('product', product.data.highlights)
 
   res.render('pages/detail', {
-    product,
-    meta,
-    preloader
+    ...defaults,
+    product
   })
 })
 

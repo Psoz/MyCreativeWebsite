@@ -1,0 +1,7 @@
+$breakpoints: (
+  'phone': 768px,
+  'phone': 1024px,
+  'phone': 2000px,
+) !default;
+
+@import '../../node_modules/include-media/dist/_include-media.scss';

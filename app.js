@@ -119,8 +119,6 @@ app.get('/detail/:uid', async (req, res) => {
     fetchLinks: 'collection.title'
   })
 
-  console.log('product', product.data.highlights)
-
   res.render('pages/detail', {
     ...defaults,
     product

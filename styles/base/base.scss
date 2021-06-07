@@ -1,3 +1,9 @@
+*,
+*:after,
+*:before {
+    box-sizing: border-box;
+}
+
 html {
     font-size: calc(100vw / 1920 * 10);
 }
@@ -5,4 +11,10 @@ html {
 body {
     @extend %description-16;
     font-family: $font-suisse-bp;
+}
+
+a {
+  outline: none;
+  text-decoration: none;
+  color: inherit;
 }

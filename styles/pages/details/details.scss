@@ -80,8 +80,26 @@
     letter-spacing: 0.03rem;
     max-width: 44rem;
 }
+
 .detail__information__link {
     margin-top: 3rem;
     display: inline-block;
     @extend %title-30;
+}
+
+.detail__button {
+    bottom: 5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 6rem;
+    width: 12.4rem;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.detail__button__icon {
+    @extend %cover;
 }

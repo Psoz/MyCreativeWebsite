@@ -3,29 +3,22 @@
   background: $color-quicksand;
   color: $color-quarter-spanish-white;
 }
+
 .collections__wrapper {
   @extend %cover;
   overflow: hidden;
 }
+
 .collections__titles {
-  align-items: center;
-  display: flex;
-  left:50%;
-  position: absolute;
-  top:50%;
-  transform: translate(-50%,-50%) rotate(-90deg);
+  @extend %vertical-titles;
 }
+
 .collections__titles__label {
-  @extend %description-12;
-  letter-spacing: 0.1rem;
-  margin: 0 3rem;
-  transform: rotate(90deg);
-  text-align: center;
-  text-transform: uppercase;
+  @extend %vertical-titles__label;
 }
+
 .collections__titles__title {
-  @extend %title-200;
-  padding-top: 2rem;
+  @extend %vertical-titles__title;
 }
 .collections__gallery {
   @extend %cover; 

@@ -21,7 +21,7 @@ block content
                 svg.detail__information__highlight__icon 
                   use(xlink:href=`sprite=${highlight.highlights_icon.toLowerCase()}`)
 
-                span.detail__information__highlight__text=highlight.text.replace(/\n/, '<br>')
+                span.detail__information__highlight__text=highlight.text.replace(/\n/g, '<br>')
 
           .detail__information__list 
             each item in product.data.informations 
@@ -30,7 +30,7 @@ block content
                 span.detail__information__item__description=item.informations_description
 
           a.detail__information__link(href=product.data.link_url.url target="_blank")=product.data.link_text
-    button.detail__button Close 
+    button.detail__button 
       svg.detail__button__icon(xmlns="http://www.w3.org/2000/svg" viewBox="0 0 124 60")
         <svg  width="124" height="60" >
           <g id="back" transform="translate(-1144.53 -971.078)">

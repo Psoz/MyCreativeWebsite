@@ -1,6 +1,9 @@
 .navigation {
     @extend %cover;
+
+    position: fixed;
     color: $color-quarter-spanish-white;
+    pointer-events: none;
     z-index: z('navigation');
 }
 .navigation__link{
@@ -9,6 +12,14 @@
    top: 4rem;
    height: 2rem;
    width: 12.8rem;
+   pointer-events: auto;
+
+   @include media('<phone') {
+    height: 43rem;  
+    left: 5rem;
+    top: 5rem;
+    width: 27.9rem;
+   }
 }
 
 .navigation__link__icon {
@@ -18,10 +29,13 @@
     
 }
 .navigation__list__item {
+    pointer-events: auto;
     position: absolute;
     right: 4rem;
     top: 4rem;
 }
-.navigation__list__link{
+.navigation__list__link {
     @extend %title-20;
+
+    display: block;
 }

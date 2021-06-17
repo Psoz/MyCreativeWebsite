@@ -5,6 +5,7 @@
   color: $color-quarter-spanish-white;
   background-color: $color-contessa;
   text-align: center;
+  overflow: hidden;
 
   &:before,&:after {
     content: '';
@@ -24,9 +25,11 @@
     bottom:0;
   }
 }
+
 .home__wrapper  {
 
 }
+
 .home__titles {
     @extend %vertical-titles;
 }
@@ -38,7 +41,7 @@
 }
 .home__gallery {
   @extend %cover;
-  display: none;
+  visibility: hidden;
 }
 .home__gallery__media  {
 
@@ -60,6 +63,12 @@
     position: absolute;
     letter-spacing: 0.05rem;
     z-index: 2;
+
+    @include media('<phone') {
+      bottom:7.5rem;
+      height: 13.7rem;
+      width: 55rem;
+    }
 }
 
 .home__link__icon {

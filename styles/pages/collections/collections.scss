@@ -86,6 +86,8 @@
 
 .collections__mobile {
   display: flex;
+  position: absolute;
+  bottom: 5rem;
 }
 
 .collections__mobile__item {
@@ -95,8 +97,11 @@
 
 .collections__mobile__item__label {
   font-size: 2rem;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
 }
 
 .collections__mobile__item__title {
-  
+  font-family: $font-george-x;
+  font-size: 12rem;
 }

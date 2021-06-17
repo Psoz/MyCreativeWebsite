@@ -17,10 +17,10 @@ block content
           h2.about__title!=section.primary.text.replace(/\n/g, '<br>')
 
         if section.slice_type == "content"
-          section.about__content(class=`${section.primary.type === 'left' ? 'about__content--left' : 'about__content--right' }`)
+          section.about__content(class=`${section.primary.type === 'Left' ? 'about__content--left' : 'about__content--right' }`)
             .about__content__wrapper
               .about__content__box
-                p.about__content__label=section.primary.label 
+                p.about__content__label!=section.primary.label 
 
                 .about__content__description!=PrismicDOM.RichText.asHtml(section.primary.description)
 
@@ -35,9 +35,9 @@ block content
 
               h3.about__highlight__title=section.primary.title
 
-              .about__highlight__media
+              .about__highlight__medias
                 each media in section.items 
-                  figure.about__highlight_medias
+                  figure.about__highlight_media
                     img.about__highlight__media__image(alt=media.image.alt src=media.image.url)
 
         if section.slice_type == "gallery"

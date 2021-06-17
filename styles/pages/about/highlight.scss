@@ -19,6 +19,15 @@
   .about__highlight:nth-child(4) & {
     width: 104rem;
   }
+
+  @include media('<phone') {
+    width: 100%;
+
+    .about__highlight:nth-child(4) & {
+      height: 119.3;
+      width: 100%;
+    }
+  }
 }
 
 .about__highlight__label {
@@ -42,6 +51,10 @@
   top: 50%;
   left: 50%;
   padding-bottom: 2rem;
+
+  @include media('<phone') {
+    font-size: 30rem;
+  }
 }
 
 .about__highlight__media {
